@@ -1,0 +1,24 @@
+{
+  "title": "The Crossings Demo",
+  "grid": ["....", "....", "....", "...."],
+  "clues": {
+    "1A": "Round object used in many sports",
+    "5A": "A region or amount of space",
+    "6A": "Guide, or be at the front of a group",
+    "7A": "A woman, in a courteous form of address",
+    "1D": "Object kicked or thrown in a game",
+    "2D": "A region measured on a map",
+    "3D": "To go in front and show the way",
+    "4D": "A woman, often in a formal title"
+  },
+  "candidates": {
+    "1A": [{"answer":"BALL","score":0.92,"rationale":"clue fit"},{"answer":"BELL","score":0.31,"rationale":"near spelling"}],
+    "5A": [{"answer":"AREA","score":0.88,"rationale":"definition match"},{"answer":"IDEA","score":0.36,"rationale":"alternate sense"}],
+    "6A": [{"answer":"LEAD","score":0.86,"rationale":"verb sense"},{"answer":"READ","score":0.42,"rationale":"alternative"}],
+    "7A": [{"answer":"LADY","score":0.90,"rationale":"definition match"},{"answer":"BABE","score":0.18,"rationale":"weak fit"}],
+    "1D": [{"answer":"BALL","score":0.87,"rationale":"sports object"},{"answer":"BELL","score":0.30,"rationale":"wrong object"}],
+    "2D": [{"answer":"AREA","score":0.85,"rationale":"definition match"},{"answer":"IDEA","score":0.35,"rationale":"wrong sense"}],
+    "3D": [{"answer":"LEAD","score":0.89,"rationale":"verb definition"},{"answer":"LOAD","score":0.21,"rationale":"crossing mismatch"}],
+    "4D": [{"answer":"LADY","score":0.91,"rationale":"definition match"},{"answer":"LAZY","score":0.12,"rationale":"crossing mismatch"}]
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "suite": "Crossword CSP synthetic recovery v1",
+  "seed": 20261006,
+  "puzzles": 22,
+  "templates": 11,
+  "entries": 152,
+  "baseline": "independent top-ranked candidate per clue; no crossing validation",
+  "agent": "top-2 clue candidates + arc consistency + MRV backtracking",
+  "metrics": {
+    "baseline_word_accuracy": 0.0,
+    "agent_word_accuracy": 1.0,
+    "baseline_letter_accuracy": 0.12126865671641791,
+    "agent_letter_accuracy": 1.0,
+    "baseline_full_puzzle_rate": 0.0,
+    "agent_full_puzzle_rate": 1.0,
+    "baseline_crossing_violations_total": 248,
+    "agent_crossing_violations_total": 0,
+    "mean_candidate_tries_per_puzzle": 0.0,
+    "mean_backtracks_per_puzzle": 0.0,
+    "median_solver_ms": 0.06300007225945592,
+    "p95_solver_ms": 0.13950001448392868,
+    "provider_calls": 0,
+    "provider_tokens": null,
+    "provider_cost": null
+  },
+  "cases": [
+    {
+      "case": "1.1",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 13,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "1.2",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 14,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "2.1",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 15,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "2.2",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 15,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "3.1",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 16,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "3.2",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 15,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "4.1",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 14,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "4.2",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 15,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "5.1",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 15,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "5.2",
+      "size": "4x4",
+      "entries": 8,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 8,
+      "baseline_crossing_violations": 16,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "6.1",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 8,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "6.2",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 8,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "7.1",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 8,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "7.2",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 8,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "8.1",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 8,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "8.2",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 9,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "9.1",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 9,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "9.2",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 8,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "10.1",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 8,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "10.2",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 9,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "11.1",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 9,
+      "search_nodes": 0,
+      "backtracks": 0
+    },
+    {
+      "case": "11.2",
+      "size": "3x3",
+      "entries": 6,
+      "baseline_exact_words": 0,
+      "agent_exact_words": 6,
+      "baseline_crossing_violations": 8,
+      "search_nodes": 0,
+      "backtracks": 0
+    }
+  ],
+  "scope_note": "Synthetic, tiny word-square fixtures with deliberately noisy candidate rankings. This isolates constraint recovery and is not evidence of real-world clue-solving accuracy. Provider calls/cost are not measured."
+}

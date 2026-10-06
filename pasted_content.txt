@@ -1,0 +1,188 @@
+Yes. This assessment is essentially asking you to build a **small but production-minded crossword-solving AI system**, not just send crossword clues to an LLM. The warning about “pure vibe coding” means they will expect you to explain the architecture, algorithms, failure modes, experiments, and why you made each decision.
+
+### What I would build
+
+Use **Python + an LLM through Token Factory**, with a solver architecture like this:
+
+```text
+Crossword Input
+     ↓
+Puzzle Parser
+     ↓
+Grid + Across/Down Constraint Model
+     ↓
+Candidate Generator (LLM)
+     ↓
+Candidate Scoring
+     ↓
+Constraint Solver / Backtracking
+     ↓
+Confidence + Conflict Resolution
+     ↓
+Completed Crossword
+```
+
+The important part is the **constraint-solving layer**. Suppose:
+
+```text
+1 Across: "Capital of France" (5)
+Candidate → PARIS
+
+2 Down: "A fruit" (5)
+Candidates → APPLE, GRAPE, MANGO
+```
+
+Your program shouldn't independently accept whatever the LLM says. Every Across/Down answer shares letters with other answers. Those intersections become hard constraints.
+
+For each clue, ask the model for perhaps **5–10 candidate answers with confidence/reasoning**, then rank candidates using clue relevance, required length, known crossing letters, and optionally model confidence. As more answers become known, re-query or re-rank uncertain clues. If you hit a contradiction, use **backtracking** rather than blindly continuing.
+
+### Repository I'd submit
+
+```text
+crossword-agent/
+│
+├── README.md
+├── requirements.txt
+├── .env.example
+├── main.py
+│
+├── src/
+│   ├── parser.py
+│   ├── grid.py
+│   ├── agent.py
+│   ├── candidate_generator.py
+│   ├── solver.py
+│   ├── scoring.py
+│   └── models.py
+│
+├── evaluation/
+│   ├── benchmark.py
+│   ├── metrics.py
+│   └── datasets/
+│
+├── tests/
+│   ├── test_grid.py
+│   ├── test_parser.py
+│   └── test_solver.py
+│
+└── examples/
+    └── sample_puzzle.json
+```
+
+Keep the LLM/provider interface isolated. That makes it easy to say in the interview: *“The reasoning engine isn't coupled to one model provider; Token Factory is simply the current inference backend.”*
+
+### Evaluation is where you can stand out
+
+Don't report only “it solved this crossword.”
+
+Benchmark perhaps **20–50 puzzles** of different difficulties and report:
+
+| Metric | What it demonstrates |
+|---|---|
+| Letter accuracy | % correct cells |
+| Word accuracy | % completely correct answers |
+| Puzzle completion | % fully solved puzzles |
+| Invalid crossings | Constraint failures |
+| Runtime | Speed per puzzle |
+| LLM calls | Efficiency |
+| Token usage/cost | Production economics |
+| Accuracy by difficulty | Robustness |
+
+Then run an **ablation study**:
+
+**Baseline A:** one-shot LLM  
+**Baseline B:** LLM + crossing constraints  
+**Final:** candidate generation + constraints + confidence + backtracking
+
+For example, your final README could show:
+
+```text
+                    Word Accuracy    Full Solve    Avg Calls
+One-shot LLM             61%            20%           1
++ constraints            78%            42%          18
++ backtracking           86%            58%          23
+```
+
+Those numbers are only illustrative—you should generate the actual results. **Do not manufacture benchmark numbers.**
+
+### Make the agent observable
+
+Because this is an **FDE assessment**, I'd also make the demo show what the system is doing rather than simply printing the final crossword.
+
+Something like:
+
+```text
+[Solver] 1A "Capital of France" (5)
+Candidates: PARIS (.96), LYONS (.12)
+
+[Solver] Selected PARIS
+Reason: clue match + length + 2 crossing constraints
+
+[Solver] 4D conflict detected
+Current candidate: MANGO
+Expected pattern: A_P_E
+
+[Solver] Backtracking...
+[Solver] Selected APPLE (.91)
+
+Puzzle: 93.4% confidence
+Runtime: 12.7 sec
+LLM calls: 21
+```
+
+A simple **Streamlit UI** could make the submission much more client-facing: crossword grid on the left, clues/status on the right, and metrics underneath. But build the CLI/core solver first. Don't spend half the assignment making a pretty UI.
+
+### Your 1-minute video
+
+Present it as though you're showing a customer a solution, rather than narrating code.
+
+A strong flow would be approximately:
+
+**0–10 sec:** Problem and solution.
+
+> “I built an AI crossword agent that combines LLM reasoning with deterministic crossword constraints rather than relying on a single model response.”
+
+**10–30 sec:** Run a puzzle and show answers filling dynamically.
+
+**30–45 sec:** Explain architecture.
+
+> “The model generates candidate answers, while the solver validates length and crossing letters. Low-confidence conflicts trigger candidate reconsideration and backtracking.”
+
+**45–55 sec:** Show your real benchmark table.
+
+> “I evaluated it across X puzzles using word accuracy, letter accuracy, completion rate, latency and model cost.”
+
+**55–60 sec:** Close with production thinking.
+
+> “The model layer is provider-independent, so models can be compared or replaced without changing the solver.”
+
+That sounds substantially more **client-facing** than “Here is my Python code and it calls an API.”
+
+### What they'll probably challenge you on
+
+Be ready to explain **why an agent is needed**, why you didn't simply ask an LLM to solve the entire puzzle, how you deal with hallucinations, why you chose your candidate count, how confidence works, what happens when an early answer is wrong, how you prevent infinite backtracking, how you benchmarked it, what the largest failure category was, and what you'd improve with another week.
+
+One particularly good design decision is to distinguish **LLM uncertainty from constraint certainty**. Crossing letters and answer lengths are deterministic; semantic clue interpretation isn't. Therefore your solver should allow the deterministic layer to overrule a confident but inconsistent LLM answer.
+
+### Suggested implementation sequence
+
+1. Define a clean JSON puzzle format and grid representation.
+2. Extract Across/Down entries and their intersections.
+3. Implement deterministic constraint checking **without any LLM**.
+4. Build the Token Factory model adapter.
+5. Generate structured candidate answers for each clue.
+6. Implement candidate ranking.
+7. Implement most-constrained-first solving + backtracking.
+8. Add confidence/conflict handling.
+9. Create unit tests.
+10. Build the benchmark runner.
+11. Compare against simpler baselines.
+12. Add a lightweight UI/demo.
+13. Write an excellent README with architecture, setup, evaluation and limitations.
+14. Record the <1-minute demo only after your benchmark numbers are final.
+
+The key is **don't over-engineer it into a huge multi-agent framework**. A well-engineered hybrid of **LLM candidate generation + classical constraint satisfaction + measurable evaluation** is easier to defend technically and demonstrates that you understand where AI should and shouldn't be used.
+
+For the Token Factory setup, use the credit flow they provided: create the account, complete the $0 card authorisation, claim/apply the $100 promotional credit, and keep the API credential in `.env`—never commit it to GitHub. [Token Factory](https://tokenfactory.nebius.com/?utm_source=chatgpt.com) [$100 candidate credit](https://nebius.com/promo-code?utm_promo_event_code=tokenfactory-credits-100&utm_promo_code_type=Token_Factory&utm_promo_activation_code=TOKENFACTORY-100-COKE&utm_promo_campaign_id=candidate-interviews&utm_source=chatgpt.com)
+
+**I can also help you build this assessment end-to-end**—architecture, Python implementation, Token Factory integration, constraint/backtracking solver, tests, benchmark framework, GitHub-quality README, and the exact 60-second presentation script.

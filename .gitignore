@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.egg-info/
+.DS_Store
+artifacts/*.mp4
+artifacts/*.wav
+artifacts/*.png
+demo/*-silent.mp4
